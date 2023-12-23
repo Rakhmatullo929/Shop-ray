@@ -1,0 +1,84 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block main %}
+
+    <div class="container">
+        <h1 class="title has-text-centered has-text-dark">
+            Бренды
+        </h1>
+        <div class="c-columns">
+
+            {% for brand in brands %}
+
+                <div class="c-column">
+                    <a href="{% url 'store:shop' %}?brand={{ brand.pk }}">
+
+                        <div class="s-box">
+                            <img class="brand-img" src="{{ brand.image.url }}" alt="">
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <hr class="my-6" style="background: gray">
+        {% if flag %}
+                <p class="subtitle has-text-centered button is-fullwidth is-danger">Товара нет в наличии</p>
+        {% endif %}
+        <h1 class="title has-text-centered has-text-dark">
+
+            {% if brand %}
+
+                {{ brand.name }}
+
+            {% else %}
+
+                Наши продукты👇🏻
+
+            {% endif %}
+
+        </h1>
+        <div class="c-cards">
+            {% for product in products %}
+                <a href="{% url 'store:product_detail' pk=product.pk %}">
+                    <div class="c-card has-text-centered">
+                        <img class="p-img" src="{{ product.thumb.url }}" alt="">
+
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 150px">
+
+                            <div class="mt-4">
+                                <h2 class="title">
+                                    {{ product.title }}
+                                </h2>
+
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; height: 30px">
+
+                                <p class="subtitle">
+                                    {{ product.price }} сум
+                                </p>
+
+
+                                <a href="{% url 'store:shop' %}?product={{ product.id }}">
+                                    <ion-icon name="cart-outline" class="order" style="font-size: 30px"></ion-icon>
+                                </a>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </a>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,154 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block main %}
+
+    <section class="section">
+        <div class="columns">
+            <div class="column">
+                <img src="{{ product.thumb.url }}" alt="">
+            </div>
+
+            <div class="column">
+
+                <p class="title">{{ product.title }}</p>
+                <hr class="info-line">
+                <p>Бренд:</p>
+                <p class="info" style="text-transform: capitalize">{{ product.brand }}</p>
+                <hr class="info-line">
+                <p>В наличии:</p>
+                {% if product.quantity %}
+                    <p class="info">{{ product.quantity }}</p>
+                {% else %}
+                    <p class="info" style="text-transform: capitalize">Нет</p>
+                {% endif %}
+                <hr class="info-line">
+                <p>Цена:</p>
+                <p class="info">{{ product.price }} сум/шт</p>
+                <hr class="info-line">
+
+                <div>
+                <p class="title is-size-4">
+                    Наши соц. сети
+                </p>
+
+                <a href="https://t.me/NVBworkhome" target="_blank">
+                   <ion-icon name="paper-plane" style="font-size: 35px; color:#1e95d0;"></ion-icon>
+                </a>
+
+                <a href="#">
+                    <img src="{% static 'img/inst_logo.png' %}" style="width: 35px; height: 35px" alt="">
+                </a>
+
+                <a href="#">
+                    <ion-icon name="logo-facebook" style="font-size: 35px; color: #286ca5"
+                              class="order"></ion-icon>
+                </a>
+                </div>
+
+
+
+                <hr class="info-line">
+                {% if product.quantity %}
+                    <a class="button" style="background: #e88b91"
+                       href="{% url 'store:product_detail' pk=product.pk %}?product={{ product.id }}">
+                        В корзину
+                    </a>
+                {% else %}
+                    <p class="subtitle has-text-danger-dark">Товара пока нет в наличии</p>
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+
+        <div class="b-cols">
+
+
+            <div class="b-col bar-item active" id="defaultOpen" onclick="openTab(event, 'description')">
+
+                <b class="under is-uppercase"> Описание </b>
+            </div>
+
+            <div class="b-col bar-item" onclick="openTab(event, 'reviews')">
+
+                <b class="under is-uppercase">Отзывы</b>
+            </div>
+        </div>
+        {#        <hr class="end-line">#}
+        <div class="starters tabcontent mt-5" id="description">
+            <p class="title">{{ product.description }}</p>
+
+
+        </div>
+
+        <div class="starters tabcontent mt-5" id='reviews'>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name == 'rating' %}
+                        <div class="select is-fullwidth mb-4">
+                            <label for="{{ field.id_for_label }}"
+                                   class="label is-size-4">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% else %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label is-size-4">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+                <div class="mt-6">
+                    <button class='button' style="background: #ffff00" type="submit">Отправить</button>
+                    <a class='button' style="background: #e88b91" href="{% url 'store:main' %}">Вернутся на главную
+                        страницу</a>
+                </div>
+            </form>
+
+            <hr class="div-line">
+        {% if reviews %}
+
+            <div class="box mt-6 has-background-grey-lighter">
+                {% for review in reviews %}
+                    <div class="box is-flex is-justify-content-space-between" style="background: lightgoldenrodyellow">
+
+                        <div class="">
+
+                            <p class="title is-size-4">{{ review.user.first_name }}</p>
+                            <p class="subtitle">{{ review.user }}</p>
+                            {{ review.rating }}/5 ⭐️
+                            <p class="subtitle has-text-grey">
+                                {{ review.text }}
+                            </p>
+
+                        </div>
+
+                        <div class="has-text-right is-size-4">
+                            <a href="{% url 'store:edit_review' review.pk %}">
+                                <ion-icon name="create-outline"></ion-icon>
+                            </a>
+                            <a href="{% url 'store:delete_review' review.pk %}">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </a>
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        {% else %}
+            <p class="subtitle is-3 has-text-centered">Отзывов пока нет</p>
+        {% endif %}
+        </div>
+
+    </section>
+
+
+{% endblock %}

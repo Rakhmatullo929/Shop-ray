@@ -1,0 +1,199 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nvb workhome</title>
+    <link rel="stylesheet" href="{% static 'bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+</head>
+
+<body>
+
+<section class="wrapper">
+
+    <header class="header">
+        <h1 class="title has-text-centered is-uppercase has-text-weight-bold has-text-dark">NVB</h1>
+        <h3 class="title has-text-centered has-text-dark">workhome</h3>
+
+
+        <nav class="navbar nav">
+            <ul class="nav-items has-text-dark">
+                <li>
+                    <a href="{% url 'store:main' %}" class="nav-item">
+                        Главная
+                        <ion-icon name="home"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'store:shop' %}" class="nav-item"> Магазин
+                        <ion-icon name="storefront"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    {% if cart_items %}
+                        <a href="{% url 'store:cart' %}" class="nav-item has-notification"> Корзина
+                            <ion-icon name="cart" style="font-size: 20px"></ion-icon>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'store:cart' %}" class="nav-item"> Корзина
+                            <ion-icon name="cart" style="font-size: 20px"></ion-icon>
+                        </a>
+                    {% endif %}
+                </li>
+                <li>
+
+                    <a href="{% url 'store:search_page' %}" class="nav-item-c"> Найти
+                        <ion-icon name="search" style="font-size: 20px"></ion-icon>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="{% url 'store:orders' %}" class="nav-item-c">
+                        заказы
+                        <ion-icon name="bag"></ion-icon>
+                    </a>
+                </li>
+                {% if not user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'users:log_in' %}" class="nav-item"> Авторизоваться
+                            <ion-icon name="person" style="font-size: 20px"></ion-icon>
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'users:log_out' %}" class="nav-item"> Выйти
+                            <ion-icon name="person" style="font-size: 20px"></ion-icon>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div class="burger">
+            <span></span>
+        </div>
+
+    </header>
+
+
+    <main class="main">
+        {% block main %}
+        {% endblock %}
+
+        {% block slider %}
+        {% endblock %}
+
+        {% block auth %}
+        {% endblock %}
+    </main>
+
+
+    {#    <footer class="footer">#}
+    {#        <div class="f-elements">#}
+    {#            <div class="f-element">#}
+    {#                <h3 class="title has-text-white">#}
+    {#                    About us#}
+    {#                </h3>#}
+    {#                <p class="subtitle has-text-grey-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, error#}
+    {#                    expedita itaque minus non quo repellendus? Consequuntur dolore neque, officiis, porro possimus#}
+    {#                    provident quasi quos unde veniam vitae voluptas, voluptates.20</p>#}
+    {#            </div>#}
+    {#            <div class="f-element">#}
+    {#                <h3 class="title has-text-white">Newsletter</h3>#}
+    {#                <form action="#">#}
+    {#                    <input class="f-input" type="email" placeholder="Enter your email">#}
+    {#                    <br>#}
+    {#                    <button style="background: #f89cab" class="button is-uppercase has-text-white mt-3" type="submit">#}
+    {#                        subscribe#}
+    {#                    </button>#}
+    {#                </form>#}
+    {#            </div>#}
+    {#            <div class="f-element">#}
+    {#                <h3 class="title has-text-white">Help</h3>#}
+    {#                <p class="subtitle has-text-grey-light">#}
+    {#                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate eaque error ex,#}
+    {#                    expedita facilis minus nam odit quod vero?#}
+    {#                </p>#}
+    {#            </div>#}
+    {#            <div class="f-element">#}
+    {#                <h3 class="title has-text-white">Contact us</h3>#}
+    {#                <p class="subtitle has-text-grey-light nav-item">#}
+    {#                    <ion-icon name="location"></ion-icon>#}
+    {#                    Uzbekistan, Bukhara#}
+    {#                </p>#}
+    {#                <p class="subtitle has-text-grey-light nav-item">#}
+    {#                    <ion-icon name="call"></ion-icon>#}
+    {#                    +998 223893834984#}
+    {#                </p>#}
+    {#                <p class="subtitle has-text-grey-light nav-item">#}
+    {#                    <ion-icon name="mail"></ion-icon>#}
+    {#                    mail@domain.com#}
+    {#                </p>#}
+    {#            </div>#}
+    {##}
+    {#        </div>#}
+    {#        <hr>#}
+    {#        <p class="subtitle has-text-grey-light has-text-centered">©Completion of practice at Monday Academy</p>#}
+    {#    </footer>#}
+</section>
+
+
+<script type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+<script>
+    bulmaCarousel.attach('#carousel-demo', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        autoplay: true,
+        infinite: true,
+        autoplaySpeed: 1800,
+        breakpoints: [{changePoint: 480, slidesToShow: 1, slidesToScroll: 1}, {
+            changePoint: 640,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }, {changePoint: 768, slidesToShow: 1, slidesToScroll: 1}]
+    });
+</script>
+<script>
+    document.querySelector('.burger').addEventListener('click', function () {
+        this.classList.toggle('active');
+        document.querySelector('.nav').classList.toggle('open');
+    })
+</script>
+<script>
+    function openTab(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("bar-item");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+
+</body>
+</html>
+

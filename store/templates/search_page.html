@@ -1,0 +1,56 @@
+ {% extends 'base_layout.html' %}
+{% load static %}
+
+{% block main %}
+    <form class="search-form" action="#" method="get">
+        <input class="search-input" type="search" name="search" placeholder="Найти">
+        <button type="submit" class="submit">
+            <ion-icon name="search" style="font-size: 20px"></ion-icon>
+        </button>
+
+    </form>
+
+
+    <hr class="my-6" style="background: gray">
+
+    <div class="c-cards">
+        {% for product in products %}
+            <div class="c-card has-text-centered">
+                <img class="p-img" src="{{ product.thumb.url }}" alt="">
+
+                <div style="display: flex; flex-direction: column; justify-content: space-between; height: 150px">
+
+                    <div class="mt-4">
+                        <h2 class="title">
+                            {{ product.title }}
+                        </h2>
+
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; height: 30px">
+
+                        <p class="subtitle">
+                            {{ product.price }} сум/кг
+                        </p>
+
+
+                        <a href="{% url 'store:shop' %}?product={{ product.id }}">
+                            <ion-icon name="cart-outline" class="order"
+                                      style="font-size: 30px"></ion-icon>
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        {% endfor %}
+        {% if not flag %}
+                <p class="subtitle has-text-centered button is-fullwidth is-danger">Товара не существует</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+

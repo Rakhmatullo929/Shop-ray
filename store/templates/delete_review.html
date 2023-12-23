@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+
+{% block main %}
+   <form method="post" class="site-form has-background-light">
+       {% csrf_token %}
+       <p class="content is-size-4 mb-4 has-text-centered">Вы действительно хотите удалить этот комментарий?</p>
+       <div class="has-text-centered">
+           <button type="submit" class="button is-primary">Подтвердить</button>
+           <a href="{% url 'store:product_detail' review.product.pk %}" class='button is-danger'>Отмена</a>
+       </div>
+   </form>
+{% endblock %}

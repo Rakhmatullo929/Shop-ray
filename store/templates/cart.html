@@ -1,0 +1,92 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block main %}
+
+    <div class="card mb-4 p-4 has-text-weight-bold is-size-4">
+    <div class="has-text-centered">
+
+        {% if cart_items %}
+            <a class="button has-text-right" style="background: #ffd73a" href="{% url 'store:make_order' %}">Заказать</a>
+        {% endif %}
+      <a class="button has-text-left" style="background: #ffd73a"
+           href="{% url 'store:shop' %}">Продукты</a>
+    </div>
+        <br>
+
+        <hr>
+
+        <div class="columns has-text-centered">
+            <div class="column">
+                <div class="content">Товар: {{ total_quantity }}</div>
+            </div>
+            <div class="column">
+                <div class="content">Общая цена: {{ total_price }} сум</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-5">
+        <div class="content">
+            {% if cart_items %}
+                <table class="table has-text-centered">
+
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Продукт</th>
+                        <th>Цена</th>
+                        <th>Кол-во</th>
+                        <th>Общая сумма</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for item in cart_items %}
+
+                        <tr>
+                            <td>
+                                <img src="{{ item.product.thumb.url }}" alt="" style="min-width: 100px; width: 100px; height: 100px">
+                            </td>
+                            <td>{{ item }}</td>
+                            <td>{{ item.product.price }} sum</td>
+                            <td>
+                                <div class="quantity ml-3">
+                                    <a href="{% url 'store:edit_cart_item' item.id %}?action=increment">
+                                        <img src="{% static 'img/arrow-up.png' %}"
+                                             class="arrow" width="10px" alt="">
+                                    </a>
+                                    {{ item.quantity }}
+                                    <a href="{% url 'store:edit_cart_item' item.id %}?action=decrement">
+                                        <img src="{% static 'img/arrow-down.png' %}"
+                                             class="arrow" width="10px" alt="">
+                                    </a>
+                                </div>
+                            </td>
+
+
+                            <td>{{ item.total_price }} sum</td>
+                            <td>
+                                <a href="{% url 'store:delete_cart_item' item.pk %}"
+                                   style="font-size: 20px; color: black">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </a>
+                            </td>
+                        </tr>
+
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            {% else %}
+                <p class="title has-text-grey-light has-text-centered">Пока нету заказов</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}

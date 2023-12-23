@@ -1,0 +1,93 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block main %}
+
+    <!-- Start Hero Carousel -->
+    <section class="hero is-carousel" style=" width: 95%; margin: 80px auto 0;">
+        <div id="carousel-demo" class="hero-carousel">
+            {% for slide  in slides %}
+                <div class="item-1">
+                    <img src="{{ slide.slide.url }}" alt="">
+                </div>
+            {% endfor %}
+        </div>
+        <div class="hero-head"></div>
+        <div class="hero-body"></div>
+        <div class="hero-foot"></div>
+    </section>
+    <!-- End Hero Carousel -->
+
+
+
+    <section class="section">
+        <div class="container">
+            <div class="welcoming-banner">
+                <div class="welcoming-text">
+                    <h1 class="title has-text-grey-lighter">Вас приветствуем в наш онлайн магазин</h1>
+
+                    <p class="subtitle has-text-grey-lighter mt-6">Наша фирма NVB Workhome
+                        приветсвует вас на своем онлайн магазине. Наша фирма в притежениях многих лет занимается
+                        доставкой в
+                        Бухарском областе брендовых
+                        шоколадов и многих сладостей. Вам предлагаем широкий ассортимент брендовых шоколадов "Сладуница"
+                        "Ulduz" "Славянка" и чая
+                        "Toza".</p>
+                    <p class="subtitle has-text-grey-lighter mt-6"> Желаем вам выгодной покупки </p>
+                    <br>
+
+                    <p class="subtitle has-text-grey-lighter mt-6"> менеджер: Абдувохид Call center:
+                        +998 90 511 11 20 </p>
+                </div>
+            </div>
+        </div>
+
+
+
+     <div class="c-cards"  style="margin-top: 700px">
+        {% for product in products|slice:":3" %}
+
+            <a href="{% url 'store:product_detail' pk=product.pk %}">
+                <div class="c-card has-text-centered">
+                    <img class="p-img" src="{{ product.thumb.url }}" alt="">
+
+                    <div style="display: flex; flex-direction: column; justify-content: space-between; height: 150px">
+
+                        <div class="mt-4">
+                            <h2 class="title">
+                                {{ product.title }}
+                            </h2>
+
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; height: 30px">
+
+                            <p class="subtitle">
+                                {{ product.price }} сум
+                            </p>
+
+
+                            <a href="{% url 'store:shop' %}?product={{ product.id }}">
+                                <ion-icon name="cart-outline" class="order" style="font-size: 30px"></ion-icon>
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </a>
+
+        {% endfor %}
+     </div>
+
+    <p class="has-text-centered mt-6">
+        <a class="button has-text-left" style="background: #e88b91"
+           href="{% url 'store:shop' %}">Посмотреть все продукты</a>
+    </p>
+
+
+    </section>
+
+{% endblock %}

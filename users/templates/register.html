@@ -1,0 +1,29 @@
+{% extends 'base_layout.html' %}
+
+{% block auth %}
+   <div class="columns is-centered" style="margin-top: 4%">
+       <div class="column is-4">
+           <div class="box has-background-info-light">
+               <form class="form  has-text-centered" method="post">
+                   <h1 class="title is-size-2 has-text-centered">Регистрация</h1>
+                   {% csrf_token %}
+                   {% for f in form %}
+                   <div class="field">
+                       <label for="{{ f.id_for_label }}" class="label">{{ f.label }}</label>
+                       {{ f }}
+                       <div class="form-error">{{ f.errors }}</div>
+                       </div>
+                   {% endfor %}
+                   <button type="submit" class="button is-primary is-fullwidth">
+                       Зарегисрироваться
+                   </button>
+                   <hr class="has-background-grey-lighter">
+                   <div class="is-size-5 has-text-grey-light">У вас уже есть аккаунт? </div>
+                   <a href="{% url 'users:log_in' %}" class="button is-ghost">
+                       Перейти на страницу входа
+                   </a>
+               </form>
+           </div>
+       </div>
+   </div>
+{% endblock %}
