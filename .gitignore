@@ -6,7 +6,7 @@ venv
 settings_dev.py
 .DS_Store
 local-cdn/
-files
+files/uploads
 .venv
 *.pyc
 /static
