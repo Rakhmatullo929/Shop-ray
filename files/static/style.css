@@ -1,0 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    animation: animation 5s infinite;
+
+}
+
+body {
+    height: 100%;
+
+    /*animation: animation 5s infinite;*/
+
+
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+    display: none;
+}
+
+img {
+    width: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 1 auto;
+    margin: 0 0 50px 0;
+}
+
+.container {
+    margin: 40px auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    margin: 0 auto;
+    gap: 50px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+a {
+    color: inherit;
+}
+
+.footer {
+    background-color: #2d2d2d;
+    padding: 40px 15px 20px 15px;
+}
+
+.f-elements {
+    display: flex;
+    justify-content: space-between;
+}
+
+.f-element {
+    max-width: 400px;
+}
+
+.f-input {
+    height: 40px;
+    width: 250px;
+    padding-left: 5px;
+}
+
+.f-input::placeholder {
+    font-size: 18px;
+}
+
+.f-input:focus {
+    border: none;
+    outline: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+    transition: all .3s;
+
+}
+
+.nav-item-c {
+    transition: all .3s;
+}
+
+.nav-item:hover, .nav-item-c:hover {
+    color: lightgray;
+
+}
+
+.c-columns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.brand-img {
+    width: 280px;
+    height: 175px;
+}
+
+.s-box {
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.c-cards {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.c-card {
+    width: 300px;
+    max-height: 340px;
+    padding: 20px;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 2%;
+}
+
+.p-img {
+    height: 160px;
+}
+
+.c-button {
+    background: lightblue;
+    height: 30px;
+}
+
+/*@keyframes animation {*/
+
+/*    0% {*/
+/*        background-color: lightblue;*/
+/*        background-position: 0;*/
+/*    }*/
+/*    50% {*/
+/*        background-color: lightgreen;*/
+/*        background-position: 110px;*/
+/*    }*/
+
+/*    100% {*/
+/*        background-color: lightblue;*/
+/*        background-position: 0;*/
+/*    }*/
+
+/*}*/
+
+.welcoming-banner {
+    background-image: url("img/welcoming_bg.png");
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px;
+}
+
+.welcoming-banner::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.welcoming-text {
+    /* top: 30%; */
+    position: relative;
+    font-family: 'Lobster', cursive;
+    /* position: absolute; */
+    text-align: center;
+}
+
+.welcoming-text p {
+    line-height: 2;
+
+}
+
+.search-form {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 6px 30px;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: inherit;
+    font-size: 25px;
+    /* z-index: 3; */
+    background: transparent;
+}
+
+.search-input::placeholder {
+    font-size: 25px;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.submit {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 12px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: black;
+}
+
+.submit:hover {
+    cursor: pointer;
+}
+
+.quantity {
+    display: inline-block;
+    font-weight: 700;
+    padding-right: 10px;
+
+}
+
+.arrow {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
+}
+
+.arrow:hover {
+    opacity: .6;
+}
+
+@media (max-width: 768px) {
+
+    .welcoming-text h1 {
+        font-size: 16px;
+    }
+
+    .welcoming-text p {
+        line-height: 1.3;
+    }
+
+}
+
+.is-carousel {
+    overflow: hidden;
+    border: 3px solid gray;
+    border-radius: 20px;
+    height: 40vh;
+}
+
+.item-1 img {
+    height: 40vh;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .item-1 img {
+        height: 75vh;
+    }
+
+    .is-carousel {
+        height: 75vh;
+    }
+}
+
+.open {
+    display: flex !important;
+}
+
+.nav {
+    display: flex;
+    width: 1100px;
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+.nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.burger {
+    display: none;
+    position: relative;
+    z-index: 50;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30px;
+    height: 18px;
+    margin: 0 20px 0 auto;
+}
+
+.burger:hover {
+    cursor: pointer;
+}
+
+.burger span {
+    height: 2px;
+    width: 80%;
+    transform: scale(1);
+    background-color: #000000;
+}
+
+.burger::before, .burger::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #020202;
+    transition: all 0.3s ease 0s;
+}
+
+.burger::before {
+    top: 0
+}
+
+.burger::after {
+    bottom: 0
+}
+
+
+/* Добавляем класс active для анимации иконки бургера */
+.burger.active span {
+    transform: scale(0);
+    background-color: white;
+}
+
+.burger.active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0, -50%);
+    background-color: white;
+}
+
+.burger.active::after {
+    bottom: 50%;
+    transform: rotate(45deg) translate(0, 50%);
+    background-color: white;
+}
+
+
+/* При разрешении экрана 900px и ниже, выводим на экран иконку бургера */
+@media (max-width: 1050px) {
+
+    .burger {
+        display: flex;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        overflow-y: auto;
+        padding: 50px 40px;
+        background: rgb(232, 139, 145);
+        animation: burgerAnimation 0.4s;
+
+    }
+
+    .nav ul {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+}
+
+@keyframes burgerAnimation {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+.register-link {
+    color: blue;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    color: blue;
+}
+
+.form-error {
+    color: red;
+}
+
+.info {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.info-line {
+
+    background: rgb(62, 54, 54);
+
+
+}
+
+.b-cols {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.b-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial;
+    cursor: pointer;
+}
+
+.bar-item.active {
+    padding-bottom: 20px;
+    color: #ffff00;
+    border-bottom: 3px solid #ffff00;
+    position: relative;
+}
+
+.bar-item.active::before {
+    content: '';
+    border-bottom: 2px solid black;
+    position: absolute;
+    width: 1000vw;
+    bottom: -3px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+.end-line {
+    height: 1px;
+    margin: 0;
+    margin-bottom: 50px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.div-line {
+    margin-top: 50px;
+    height: 1px;
+
+    background: #a09b9b;
+}
+
+.has-notification{
+    position: relative;
+}
+
+.has-notification::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    right: -3px;
+
+    top: 3px;
+    pointer-events: none;
+}
+
