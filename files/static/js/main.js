@@ -45,6 +45,6 @@ function slider() {
         sliderLine.style.transform = 'translate(-' + count * width + 'px'
     }
 
-};
+} ;
 
 slider();
