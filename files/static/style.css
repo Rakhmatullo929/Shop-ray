@@ -13,10 +13,6 @@ html {
 
 body {
     height: 100%;
-
-    /*animation: animation 5s infinite;*/
-
-
 }
 
 input::-webkit-search-decoration,
@@ -495,7 +491,7 @@ a {
     background: #a09b9b;
 }
 
-.has-notification{
+.has-notification {
     position: relative;
 }
 
