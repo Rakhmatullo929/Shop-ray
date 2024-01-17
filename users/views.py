@@ -55,3 +55,4 @@ class Login(LoginView):
 def log_out(request):
     logout(request)
     return redirect('store:main')
+
