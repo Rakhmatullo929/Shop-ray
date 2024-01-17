@@ -6,7 +6,6 @@ from .models import *
 
 def main(request):
     if request.user.is_authenticated:
-
         cart_items = CartProduct.objects.filter(customer=request.user)
     else:
         return redirect('users:log_in')

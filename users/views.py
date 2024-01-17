@@ -50,7 +50,7 @@ class Login(LoginView):
 #         return redirect('users:log_in')
 #
 #     return render(request, 'register.html', {'form': form})
-#
+
 
 def log_out(request):
     logout(request)
